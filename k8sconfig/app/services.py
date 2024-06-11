@@ -64,6 +64,7 @@ def create_service(data):
     else:
         return "Failed to create Kubernetes service", False
 
+
 def create_configmap(data):
     configmap_name = data.get('configmap_name')
     config_data = data.get('data')

@@ -1,6 +1,6 @@
 import yaml
 from .deployment_templates import KubernetesTemplates
-
+# function to create a dicionary which represents a k8s deployment configuration
 def generate_kubernetes_deployment_config(service_name, image, port, replicas):
     deployment_config = KubernetesTemplates.DEPLOYMENT_TEMPLATE.copy()
     deployment_config['metadata']['name'] = service_name

@@ -16,6 +16,13 @@ from app.services import (
 async def index():
     return await render_template('index.html')
 
+# route to handle creation of k8s deployments, reads data validates it and checks for duplicates
+# it also generates the deployment configs and deploys it to microk8s
+# the create_deployment() function should handle POST requests sent to the /create-deployment URL
+# @app.route decorator is specific to web frameworkks and is used to bind urls to functions the argument to
+# @app.route is the url that this function will handle. by default routes respond to GET requests but i can specify
+# other methods like POST PUT DELETE
+
 @app.route('/create-deployment', methods=['POST'])
 async def create_deployment_route():
     try:
