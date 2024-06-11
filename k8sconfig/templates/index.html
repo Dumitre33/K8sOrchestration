@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kubernetes Management</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Deploy to Kubernetes</h1>
+
+    <!-- Form for Kubernetes Deployment -->
+    <h2>Create Deployment</h2>
+    <form action="/create-deployment" method="post">
+        <label for="service_name">Service Name:</label>
+        <input type="text" id="service_name" name="service_name" required>
+        <br>
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" required>
+        <br>
+        <label for="port">Port:</label>
+        <input type="number" id="port" name="port" required>
+        <br>
+        <label for="replicas">Replicas:</label>
+        <input type="number" id="replicas" name="replicas" required>
+        <br>
+        <button type="submit">Create Deployment</button>
+    </form>
+
+    <!-- Form for Kubernetes Service -->
+    <h2>Create Service</h2>
+    <form action="/create-service" method="post">
+        <label for="service_name">Service Name:</label>
+        <input type="text" id="service_name" name="service_name" required>
+        <br>
+        <label for="port">Port:</label>
+        <input type="number" id="port" name="port" required>
+        <br>
+        <label for="target_port">Target Port:</label>
+        <input type="number" id="target_port" name="target_port" required>
+        <br>
+        <label for="protocol">Protocol:</label>
+        <input type="text" id="protocol" name="protocol" required>
+        <br>
+        <label for="type">Service Type:</label>
+        <select id="type" name="type" required>
+            <option value="ClusterIP">ClusterIP</option>
+            <option value="NodePort">NodePort</option>
+            <option value="LoadBalancer">LoadBalancer</option>
+        </select>
+        <br>
+        <button type="submit">Create Service</button>
+    </form>
+
+    <h1>Create ConfigMap</h1>
+    <form action="/create-configmap" method="post">
+        <label for="configmap_name">ConfigMap Name:</label>
+        <input type="text" id="configmap_name" name="configmap_name" required>
+        <br>
+        <label for="data">Data (key=value, separated by commas):</label>
+        <input type="text" id="data" name="data" required>
+        <br>
+        <button type="submit">Create ConfigMap</button>
+    </form>
+
+    <h1>Inject ConfigMap</h1>
+    <form action="/inject-configmap" method="post">
+        <label for="deployment_name">Deployment Name:</label>
+        <input type="text" id="deployment_name" name="deployment_name" required>
+        <br>
+        <label for="container_name">Container Name:</label>
+        <input type="text" id="container_name" name="container_name" required>
+        <br>
+        <label for="configmap_name">ConfigMap Name:</label>
+        <input type="text" id="configmap_name" name="configmap_name" required>
+        <br>
+        <label for="mount_path">Mount Path:</label>
+        <input type="text" id="mount_path" name="mount_path" required>
+        <br>
+        <button type="submit">Inject</button>
+    </form>
+
+    <h1>Create PersistentVolume</h1>
+    <form action="/create-pv" method="post">
+        <label for="pv_name">PV Name:</label>
+        <input type="text" id="pv_name" name="pv_name" required>
+        <br>
+        <label for="capacity">Capacity (e.g., 5Gi):</label>
+        <input type="text" id="capacity" name="capacity" required>
+        <br>
+        <label for="access_modes">Access Modes (comma separated):</label>
+        <input type="text" id="access_modes" name="access_modes" required>
+        <br>
+        <button type="submit">Create PersistentVolume</button>
+    </form>
+
+    <h1>Create PersistentVolumeClaim</h1>
+    <form action="/create-pvc" method="post">
+        <label for="pvc_name">PVC Name:</label>
+        <input type="text" id="pvc_name" name="pvc_name" required>
+        <br>
+        <label for="capacity">Capacity (e.g., 5Gi):</label>
+        <input type="text" id="capacity" name="capacity" required>
+        <br>
+        <label for="access_modes">Access Modes (comma separated):</label>
+        <input type="text" id="access_modes" name="access_modes" required>
+        <br>
+        <button type="submit">Create PersistentVolumeClaim</button>
+    </form>
+
+    <h1>Inject PersistentVolumeClaim</h1>
+    <form action="/inject-pvc" method="post">
+        <label for="deployment_name">Deployment Name:</label>
+        <input type="text" id="deployment_name" name="deployment_name" required>
+        <br>
+        <label for="container_name">Container Name:</label>
+        <input type="text" id="container_name" name="container_name" required>
+        <br>
+        <label for="pvc_name">PersistentVolumeClaim Name:</label>
+        <input type="text" id="pvc_name" name="pvc_name" required>
+        <br>
+        <label for="mount_path">Mount Path:</label>
+        <input type="text" id="mount_path" name="mount_path" required>
+        <br>
+        <button type="submit">Inject</button>
+    </form>
+
+    <h1>Show Resources</h1>
+    <button onclick="location.href='/show-deployments'">Show Deployments</button>
+    <button onclick="location.href='/show-services'">Show Services</button>
+    <button onclick="location.href='/show-pods'">Show Pods</button>
+    <button onclick="location.href='/show-configmaps'">Show ConfigMaps</button>
+    <button onclick="location.href='/show-pvcs'">Show PVCs</button>
+    <button onclick="location.href='/show-pvs'">Show PVs</button>
+</body>
+</html>
