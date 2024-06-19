@@ -98,10 +98,11 @@ async def delete_resource_route():
     try:
         data = await request.form
     except Exception:
-        return await render_template('result.html', message="Invalid form data")
+        return "Invalid form data"
 
     message, success = delete_resource(data)
-    return await render_template('result.html', message=message)
+    return message
+
 
 @app.route('/show-deployments', methods=['GET'])
 async def show_deployments():

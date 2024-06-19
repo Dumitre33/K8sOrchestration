@@ -1,4 +1,3 @@
-/* styles.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,60 +8,20 @@ body {
     background-color: #f4f4f4;
 }
 
-header {
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+h1 {
     text-align: center;
 }
 
-nav {
-    width: 100%;
-    background-color: #555;
-    padding: 1rem;
+p {
     text-align: center;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 1rem;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-main {
-    width: 100%;
-    max-width: 800px;
-    margin: 2rem;
-    background-color: #fff;
-    padding: 2rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form {
-    margin-bottom: 2rem;
-}
-
-label {
-    display: block;
-    margin: 0.5rem 0 0.25rem;
-}
-
-input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 button {
@@ -78,3 +37,62 @@ button:hover {
     background-color: #555;
 }
 
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+label {
+    display: block;
+    margin: 0.5rem 0 0.25rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+    display: none;
+}
+
+.resource-container {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: none;
+}
+
+.resource-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.resource-container li {
+    margin-bottom: 10px;
+}
+
+.resource-container form {
+    display: inline;
+}
+
+.resource-container button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}

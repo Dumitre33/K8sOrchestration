@@ -9,7 +9,7 @@
         {% for resource in resources %}
             <li>
                 {{ resource }}
-                <form action="/delete-resource" method="post" style="display:inline;">
+                <form action="/delete-resource" method="post" style="display:inline;" onsubmit="deleteResource(event, '{{ resource }}', '{{ resource_type }}')">
                     <input type="hidden" name="resource_type" value="{{ resource_type }}">
                     <input type="hidden" name="resource_name" value="{{ resource }}">
                     <button type="submit">Delete</button>
