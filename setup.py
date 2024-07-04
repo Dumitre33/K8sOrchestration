@@ -11,7 +11,7 @@ setup(
     install_requires=requirements,
     entry_points={
         'console_scripts': [
-            'k8s_app=run:main',
+            'start_program=thesis.k8s_config.run:main',
         ],
     },
 )
