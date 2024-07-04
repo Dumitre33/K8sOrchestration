@@ -1,22 +1,22 @@
 import yaml
 from .deployment_templates import KubernetesTemplates
 # function to create a dicionary which represents a k8s deployment configuration
-def generate_kubernetes_deployment_config(service_name, image, port, replicas):
+def generate_kubernetes_deployment_config(deployment_name, app_label, image, port, replicas):
     deployment_config = KubernetesTemplates.DEPLOYMENT_TEMPLATE.copy()
-    deployment_config['metadata']['name'] = service_name
+    deployment_config['metadata']['name'] = deployment_name
     deployment_config['spec']['replicas'] = replicas
-    deployment_config['spec']['selector']['matchLabels']['app'] = service_name
-    deployment_config['spec']['template']['metadata']['labels']['app'] = service_name
-    deployment_config['spec']['template']['spec']['containers'][0]['name'] = service_name
+    deployment_config['spec']['selector']['matchLabels']['app'] = app_label
+    deployment_config['spec']['template']['metadata']['labels']['app'] = app_label
+    deployment_config['spec']['template']['spec']['containers'][0]['name'] = deployment_name 
     deployment_config['spec']['template']['spec']['containers'][0]['image'] = image
     deployment_config['spec']['template']['spec']['containers'][0]['ports'][0]['containerPort'] = port
     return yaml.dump(deployment_config)
 
-def generate_kubernetes_service_config(service_name, port, target_port, protocol, service_type):
+def generate_kubernetes_service_config(service_name,app_label, port, target_port, protocol, service_type):
     service_config = KubernetesTemplates.SERVICE_TEMPLATE.copy()
     service_config['metadata']['name'] = service_name
     service_config['spec']['type'] = service_type
-    service_config['spec']['selector']['app'] = service_name
+    service_config['spec']['selector']['app'] = app_label
     service_config['spec']['ports'][0]['protocol'] = protocol
     service_config['spec']['ports'][0]['port'] = port
     service_config['spec']['ports'][0]['targetPort'] = target_port

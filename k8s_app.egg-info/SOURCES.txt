@@ -1,6 +1,7 @@
 MANIFEST.in
 README.md
 requirements.txt
+setup.cfg
 setup.py
 k8s_app.egg-info/PKG-INFO
 k8s_app.egg-info/SOURCES.txt

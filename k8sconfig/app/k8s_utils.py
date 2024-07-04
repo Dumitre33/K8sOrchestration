@@ -1,5 +1,6 @@
 import subprocess
 import os
+import json
 
 def deploy_to_microk8s(deployment_config, service_config):
     if not deployment_config or not service_config:
@@ -70,13 +71,49 @@ def patch_deployment_with_pvc(deployment_name, patch_config):
 
 def get_kubernetes_resources(resource_type):
     try:
-        result = subprocess.run(['microk8s', 'kubectl', 'get', resource_type, '-o', 'jsonpath={.items[*].metadata.name}'],
-                                capture_output=True, text=True, check=True)
-        resources = result.stdout.split()
-        return resources
+        if resource_type == 'services':
+            result = subprocess.run(['microk8s', 'kubectl', 'get', resource_type, '-o', 'json'], capture_output=True, text=True, check=True)
+            resources = json.loads(result.stdout)
+            return [(item['metadata']['name'], item['spec'].get('clusterIP', 'No IP')) for item in resources['items']]
+        
+        elif resource_type == 'pods':
+            result = subprocess.run(['microk8s', 'kubectl', 'get', resource_type, '-o', 'json'], capture_output=True, text=True, check=True)
+            resources = json.loads(result.stdout)
+            return [(item['metadata']['name'], item['status'].get('podIP', 'No IP')) for item in resources['items']]
+
+        elif resource_type == 'deployments':
+            result = subprocess.run(['microk8s', 'kubectl', 'get', resource_type, '-o', 'json'], capture_output=True, text=True, check=True)
+            resources = json.loads(result.stdout)
+            pod_result = subprocess.run(['microk8s', 'kubectl', 'get', 'pods', '-o', 'json'], capture_output=True, text=True, check=True)
+            pods = json.loads(pod_result.stdout)
+            pod_ips = {}
+            for pod in pods['items']:
+                for container in pod['spec']['containers']:
+                    pod_ips[container['name']] = pod['status'].get('podIP', 'No IP')
+
+            return [(item['metadata']['name'], pod_ips.get(item['metadata']['name'], 'No IP')) for item in resources['items']]
+            
+        
+        elif resource_type == 'configmaps':
+            result = subprocess.run(['microk8s', 'kubectl', 'get', resource_type, '-o', 'json'], capture_output=True, text=True, check=True)
+            resources = json.loads(result.stdout)
+            return [(item['metadata']['name'], 'ConfigMap') for item in resources['items']]
+
+        elif resource_type == 'persistentvolumeclaims':
+            result = subprocess.run(['microk8s', 'kubectl', 'get', resource_type, '-o', 'json'], capture_output=True, text=True, check=True)
+            resources = json.loads(result.stdout)
+            return [(item['metadata']['name'], item['status'].get('phase', 'No Status')) for item in resources['items']]
+
+        elif resource_type == 'persistentvolumes':
+            result = subprocess.run(['microk8s', 'kubectl', 'get', resource_type, '-o', 'json'], capture_output=True, text=True, check=True)
+            resources = json.loads(result.stdout)
+            return [(item['metadata']['name'], item['spec']['capacity']['storage']) for item in resources['items']]
+
+        return []
     except subprocess.CalledProcessError as e:
         print(f"Error getting Kubernetes {resource_type}: {e}")
         return []
+
 
 
 

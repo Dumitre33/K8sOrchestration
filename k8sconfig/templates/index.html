@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title>Kubernetes Management</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
@@ -20,8 +21,11 @@
 
     <div id="deployment-form" class="form-container">
         <form action="/create-deployment" method="post" onsubmit="return submitForm(event, 'deployment-message')">
-            <label for="service_name">Service Name:</label>
+            <label for="service_name">Deployment Name:</label>
             <input type="text" id="service_name" name="service_name" required>
+            <br>
+            <label for="app_label">App Label:</label>
+            <input type="text" id="app_label" name="app_label">
             <br>
             <label for="image">Image:</label>
             <input type="text" id="image" name="image" required>
@@ -41,6 +45,9 @@
         <form action="/create-service" method="post" onsubmit="return submitForm(event, 'service-message')">
             <label for="service_name">Service Name:</label>
             <input type="text" id="service_name" name="service_name" required>
+            <br>
+            <label for="app_label">App Label (of the pod,deployment):</label> 
+            <input type="text" id="app_label" name="app_label" required> 
             <br>
             <label for="port">Port:</label>
             <input type="number" id="port" name="port" required>

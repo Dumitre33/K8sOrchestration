@@ -33,7 +33,7 @@ async def create_deployment_route():
     message, success = create_deployment(data)
     return await render_template('result.html', message=message)
 
-@app.route('/create-service', methods=['POST'])
+@app.route('/create-service', methods=['POST']) #endpoint for creating a service
 async def create_service_route():
     try:
         data = await request.form
@@ -43,7 +43,7 @@ async def create_service_route():
     message, success = create_service(data)
     return await render_template('result.html', message=message)
 
-@app.route('/create-configmap', methods=['POST'])
+@app.route('/create-configmap', methods=['POST']) #endpoint for creating a configmap
 async def create_configmap_route():
     try:
         data = await request.form
@@ -53,7 +53,7 @@ async def create_configmap_route():
     message, success = create_configmap(data)
     return await render_template('result.html', message=message)
 
-@app.route('/inject-configmap', methods=['POST'])
+@app.route('/inject-configmap', methods=['POST']) #endpoint for injecting a configmap
 async def inject_configmap_route():
     try:
         data = await request.form
@@ -63,7 +63,7 @@ async def inject_configmap_route():
     message, success = inject_configmap(data)
     return await render_template('result.html', message=message)
 
-@app.route('/create-pv', methods=['POST'])
+@app.route('/create-pv', methods=['POST']) #endpoint for creating a pv
 async def create_pv_route():
     try:
         data = await request.form
@@ -73,7 +73,7 @@ async def create_pv_route():
     message, success = create_pv(data)
     return await render_template('result.html', message=message)
 
-@app.route('/create-pvc', methods=['POST'])
+@app.route('/create-pvc', methods=['POST']) #endpoint for creating a pvc
 async def create_pvc_route():
     try:
         data = await request.form
@@ -83,7 +83,7 @@ async def create_pvc_route():
     message, success = create_pvc(data)
     return await render_template('result.html', message=message)
 
-@app.route('/inject-pvc', methods=['POST'])
+@app.route('/inject-pvc', methods=['POST']) #endpoint for injecting a pvc 
 async def inject_pvc_route():
     try:
         data = await request.form
@@ -93,7 +93,7 @@ async def inject_pvc_route():
     message, success = inject_pvc(data)
     return await render_template('result.html', message=message)
 
-@app.route('/delete-resource', methods=['POST'])
+@app.route('/delete-resource', methods=['POST']) #endpoint for deleting a resource 
 async def delete_resource_route():
     try:
         data = await request.form

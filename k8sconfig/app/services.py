@@ -13,6 +13,7 @@ submitted_configs = {}
 
 def create_deployment(data):
     service_name = data.get('service_name')
+    app_label = data.get('app_label')
     image = data.get('image')
     port = data.get('port')
     replicas = data.get('replicas')
@@ -26,10 +27,10 @@ def create_deployment(data):
     except ValueError:
         return "Invalid port or replicas", False
 
-    if (service_name, image, port, replicas) in submitted_configs:
-        return "Duplicate deployment configuration detected", False
+    #if (service_name, app_label, image, port, replicas) in submitted_configs:
+     #   return "Duplicate deployment configuration detected", False
 
-    deployment_config = generate_kubernetes_deployment_config(service_name, image, port, replicas)
+    deployment_config = generate_kubernetes_deployment_config(service_name, app_label, image, port, replicas)
 
     if deploy_to_microk8s(deployment_config, deployment_config):
         submitted_configs[(service_name, image, port, replicas)] = True
@@ -39,12 +40,13 @@ def create_deployment(data):
 
 def create_service(data):
     service_name = data.get('service_name')
+    app_label = data.get('app_label')
     port = data.get('port')
     target_port = data.get('target_port')
     protocol = data.get('protocol')
     service_type = data.get('type')
 
-    if not service_name or not port or not target_port or not protocol or not service_type:
+    if not service_name or not app_label or not port or not target_port or not protocol or not service_type:
         return "Missing required fields", False
 
     try:
@@ -53,13 +55,13 @@ def create_service(data):
     except ValueError:
         return "Invalid port or target port", False
 
-    if (service_name, port, target_port, protocol, service_type) in submitted_configs:
-        return "Duplicate service configuration detected", False
+    #if (service_name, app_label, port, target_port, protocol, service_type) in submitted_configs:
+     #   return "Duplicate service configuration detected", False
 
-    service_config = generate_kubernetes_service_config(service_name, port, target_port, protocol, service_type)
+    service_config = generate_kubernetes_service_config(service_name, app_label, port, target_port, protocol, service_type)
 
     if deploy_to_microk8s(service_config, service_config):
-        submitted_configs[(service_name, port, target_port, protocol, service_type)] = True
+        submitted_configs[(service_name, app_label, port, target_port, protocol, service_type)] = True
         return "Kubernetes service created successfully", True
     else:
         return "Failed to create Kubernetes service", False

@@ -1,5 +1,3 @@
-# tests/test_k8s_utils.py
-
 from unittest.mock import MagicMock, patch
 import pytest
 
@@ -13,9 +11,7 @@ from app.k8s_utils import deploy_to_microk8s
     ("deployment_config_content", "", False),  # Test case 3: Missing service configuration
     ("", "service_config_content", False),  # Test case 4: Missing deployment configuration
 ])
-def test_deploy_to_microk8s():
-    assert False
-    #subprocess_run_mock, deployment_config, service_config, expected_result
+def test_deploy_to_microk8s(subprocess_run_mock, deployment_config, service_config, expected_result):
     # Call deploy_to_microk8s with the mocked configurations
     result = deploy_to_microk8s(deployment_config, service_config)
 
