@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: app
+Version: 0.2
+Summary: A python quart poject for Kubernetes management with Micork8s
+Home-page: https://github.com/Dumitre33/K8sOrchestration/tree/master/k8sconfig
+Author: Alex Dumitre
+Author-email: alexandru.dumitre@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.2
+Description-Content-Type: text
+Requires-Dist: quart
+Requires-Dist: prometheus_client
+Requires-Dist: locust
+Requires-Dist: flask
+Requires-Dist: pytest
+Requires-Dist: pytest-asyncio
+Requires-Dist: jsonschema
+Requires-Dist: PyYAML
+
+# k8s_app
+
+This is a Quart-based application to manage Kubernetes resources such as Deployments, Services, ConfigMaps, PersistentVolumes, and PersistentVolumeClaims.
+
