@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+k8squart_app.egg-info/PKG-INFO
+k8squart_app.egg-info/SOURCES.txt
+k8squart_app.egg-info/dependency_links.txt
+k8squart_app.egg-info/entry_points.txt
+k8squart_app.egg-info/requires.txt
+k8squart_app.egg-info/top_level.txt
