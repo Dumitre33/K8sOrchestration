@@ -1,2 +1,0 @@
-[console_scripts]
-start_program = thesis.k8s_config.run:main
