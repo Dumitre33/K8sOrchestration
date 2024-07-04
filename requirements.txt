@@ -17,7 +17,6 @@ Flask==3.0.3
 Flask-Cors==4.0.1
 Flask-Login==0.6.3
 frozenlist==1.4.1
-gevent==24.2.1
 greenlet==3.0.3
 gyp==0.1
 h11==0.14.0
