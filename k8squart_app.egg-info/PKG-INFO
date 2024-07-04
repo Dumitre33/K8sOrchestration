@@ -2,7 +2,7 @@ Metadata-Version: 2.1
 Name: k8squart_app
 Version: 0.2
 Summary: A python quart poject for Kubernetes management with Micork8s
-Home-page: git@github.com:Dumitre33/K8sOrchestration.git
+Home-page: https://github.com/Dumitre33/K8sOrchestration/tree/master/k8sconfig
 Author: Alex Dumitre
 Author-email: alexandru.dumitre@gmail.com
 Classifier: Programming Language :: Python :: 3

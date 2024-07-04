@@ -19,7 +19,7 @@ setup(
     description='A python quart poject for Kubernetes management with Micork8s',
     long_description=open('README.md').read(),
     long_description_content_type='text',
-    url='git@github.com:Dumitre33/K8sOrchestration.git',  
+    url='https://github.com/Dumitre33/K8sOrchestration/tree/master/k8sconfig',  
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
