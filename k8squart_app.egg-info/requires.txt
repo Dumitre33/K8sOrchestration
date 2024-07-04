@@ -1,8 +1,0 @@
-quart
-prometheus_client
-locust
-flask
-pytest
-pytest-asyncio
-jsonschema
-PyYAML

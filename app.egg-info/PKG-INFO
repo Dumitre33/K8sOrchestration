@@ -1,5 +1,5 @@
 Metadata-Version: 2.1
-Name: k8squart_app
+Name: app
 Version: 0.2
 Summary: A python quart poject for Kubernetes management with Micork8s
 Home-page: https://github.com/Dumitre33/K8sOrchestration/tree/master/k8sconfig

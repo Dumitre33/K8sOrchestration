@@ -5,7 +5,7 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setup(
-    name='k8sconfig', 
+    name='app', 
     version='0.2',  
     packages=find_packages(), 
     install_requires=requirements,
