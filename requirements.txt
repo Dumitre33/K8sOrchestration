@@ -7,6 +7,3 @@ pytest-asyncio
 jsonschema
 PyYAML
 
-## Note: microk8s must be installed separately. 
-# Install using: sudo snap install microk8s --classic
-# or following the steps at https://microk8s.io  Linux or Windows

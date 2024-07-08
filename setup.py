@@ -35,7 +35,11 @@ setup(
             'k8sconfig/pytest.ini'
         ]),
     ],
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/master
     author='Alex Dumitre',
     author_email='alexandru.dumitre@gmail.com',
     url='https://github.com/Dumitre33/K8sOrchestration/tree/master/k8sconfig',
