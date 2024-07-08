@@ -21,9 +21,9 @@ setup(
         'k8sconfig': [
             'templates/*.html',
             'static/*.css',
-            'locustfile.py',
-            'run.py',
-            'pytest.ini',
+            'tests/*.py',
+            '*.py',
+            '*.ini',
         ],
     },
 
