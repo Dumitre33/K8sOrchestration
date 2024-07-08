@@ -13,6 +13,7 @@ async def client():
 async def test_create_deployment(client):
     data = {
         "service_name": "test-deployment",
+        "app_label": "test",
         "image": "nginx",
         "port": 8080,
         "replicas": 3
@@ -57,8 +58,8 @@ async def test_create_configmap(client):
 @pytest.mark.asyncio
 async def test_inject_configmap(client):
     data = {
-        "deployment_name": "test1",
-        "container_name": "test1",
+        "deployment_name": "test-deployment",
+        "container_name": "test-deployment",
         "configmap_name": "sql1",
         "mount_path": "/etc/config"
     }
@@ -97,6 +98,7 @@ async def test_create_service_missing_fields(client):
 async def test_create_duplicate_deployment(client):
     data = {
         "service_name": "duplicate-deployment",
+        "app_label": "test",
         "image": "nginx",
         "port": 8080,
         "replicas": 3
