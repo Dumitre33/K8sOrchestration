@@ -8,7 +8,7 @@ def parse_requirements(filename):
 
 setup(
     name='thesis',
-    version='0.1',
+    version='0.2',
     packages=find_packages(where='k8sconfig'),
     package_dir={'': 'k8sconfig'},
     include_package_data=True,
