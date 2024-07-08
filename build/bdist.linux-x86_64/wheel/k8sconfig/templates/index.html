@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Kubernetes Management</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Kubernetes Management</h1>
+    <p>This project provides a web interface for managing Kubernetes resources. You can create and manage deployments, services, ConfigMaps, and volumes easily through this interface.</p>
+
+    <div class="button-container">
+        <button onclick="toggleForm('deployment-form')">Create Deployment</button>
+        <button onclick="toggleForm('service-form')">Create Service</button>
+        <button onclick="toggleForm('configmap-form')">Create ConfigMap</button>
+        <button onclick="toggleForm('inject-configmap-form')">Inject ConfigMap</button>
+        <button onclick="toggleForm('pv-form')">Create PersistentVolume</button>
+        <button onclick="toggleForm('pvc-form')">Create PersistentVolumeClaim</button>
+        <button onclick="toggleForm('inject-pvc-form')">Inject PersistentVolumeClaim</button>
+    </div>
+
+    <div id="deployment-form" class="form-container">
+        <form action="/create-deployment" method="post" onsubmit="return submitForm(event, 'deployment-message')">
+            <label for="service_name">Deployment Name:</label>
+            <input type="text" id="service_name" name="service_name" required>
+            <br>
+            <label for="app_label">App Label:</label>
+            <input type="text" id="app_label" name="app_label">
+            <br>
+            <label for="image">Image:</label>
+            <input type="text" id="image" name="image" required>
+            <br>
+            <label for="port">Port:</label>
+            <input type="number" id="port" name="port" required>
+            <br>
+            <label for="replicas">Replicas:</label>
+            <input type="number" id="replicas" name="replicas" required>
+            <br>
+            <button type="submit">Create Deployment</button>
+        </form>
+        <div id="deployment-message" class="message"></div>
+    </div>
+
+    <div id="service-form" class="form-container">
+        <form action="/create-service" method="post" onsubmit="return submitForm(event, 'service-message')">
+            <label for="service_name">Service Name:</label>
+            <input type="text" id="service_name" name="service_name" required>
+            <br>
+            <label for="app_label">App Label (of the pod,deployment):</label> 
+            <input type="text" id="app_label" name="app_label" required> 
+            <br>
+            <label for="port">Port:</label>
+            <input type="number" id="port" name="port" required>
+            <br>
+            <label for="target_port">Target Port:</label>
+            <input type="number" id="target_port" name="target_port" required>
+            <br>
+            <label for="protocol">Protocol:</label>
+            <input type="text" id="protocol" name="protocol" required>
+            <br>
+            <label for="type">Service Type:</label>
+            <select id="type" name="type" required>
+                <option value="ClusterIP">ClusterIP</option>
+                <option value="NodePort">NodePort</option>
+                <option value="LoadBalancer">LoadBalancer</option>
+            </select>
+            <br>
+            <button type="submit">Create Service</button>
+        </form>
+        <div id="service-message" class="message"></div>
+    </div>
+
+    <div id="configmap-form" class="form-container">
+        <form action="/create-configmap" method="post" onsubmit="return submitForm(event, 'configmap-message')">
+            <label for="configmap_name">ConfigMap Name:</label>
+            <input type="text" id="configmap_name" name="configmap_name" required>
+            <br>
+            <label for="data">Data (key=value, separated by commas):</label>
+            <input type="text" id="data" name="data" required>
+            <br>
+            <button type="submit">Create ConfigMap</button>
+        </form>
+        <div id="configmap-message" class="message"></div>
+    </div>
+
+    <div id="inject-configmap-form" class="form-container">
+        <form action="/inject-configmap" method="post" onsubmit="return submitForm(event, 'inject-configmap-message')">
+            <label for="deployment_name">Deployment Name:</label>
+            <input type="text" id="deployment_name" name="deployment_name" required>
+            <br>
+            <label for="container_name">Container Name:</label>
+            <input type="text" id="container_name" name="container_name" required>
+            <br>
+            <label for="configmap_name">ConfigMap Name:</label>
+            <input type="text" id="configmap_name" name="configmap_name" required>
+            <br>
+            <label for="mount_path">Mount Path:</label>
+            <input type="text" id="mount_path" name="mount_path" required>
+            <br>
+            <button type="submit">Inject</button>
+        </form>
+        <div id="inject-configmap-message" class="message"></div>
+    </div>
+
+    <div id="pv-form" class="form-container">
+        <form action="/create-pv" method="post" onsubmit="return submitForm(event, 'pv-message')">
+            <label for="pv_name">PV Name:</label>
+            <input type="text" id="pv_name" name="pv_name" required>
+            <br>
+            <label for="capacity">Capacity (e.g., 5Gi):</label>
+            <input type="text" id="capacity" name="capacity" required>
+            <br>
+            <label for="access_modes">Access Modes (comma separated):</label>
+            <input type="text" id="access_modes" name="access_modes" required>
+            <br>
+            <button type="submit">Create PersistentVolume</button>
+        </form>
+        <div id="pv-message" class="message"></div>
+    </div>
+
+    <div id="pvc-form" class="form-container">
+        <form action="/create-pvc" method="post" onsubmit="return submitForm(event, 'pvc-message')">
+            <label for="pvc_name">PVC Name:</label>
+            <input type="text" id="pvc_name" name="pvc_name" required>
+            <br>
+            <label for="capacity">Capacity (e.g., 5Gi):</label>
+            <input type="text" id="capacity" name="capacity" required>
+            <br>
+            <label for="access_modes">Access Modes (comma separated):</label>
+            <input type="text" id="access_modes" name="access_modes" required>
+            <br>
+            <button type="submit">Create PersistentVolumeClaim</button>
+        </form>
+        <div id="pvc-message" class="message"></div>
+    </div>
+
+    <div id="inject-pvc-form" class="form-container">
+        <form action="/inject-pvc" method="post" onsubmit="return submitForm(event, 'inject-pvc-message')">
+            <label for="deployment_name">Deployment Name:</label>
+            <input type="text" id="deployment_name" name="deployment_name" required>
+            <br>
+            <label for="container_name">Container Name:</label>
+            <input type="text" id="container_name" name="container_name" required>
+            <br>
+            <label for="pvc_name">PersistentVolumeClaim Name:</label>
+            <input type="text" id="pvc_name" name="pvc_name" required>
+            <br>
+            <label for="mount_path">Mount Path:</label>
+            <input type="text" id="mount_path" name="mount_path" required>
+            <br>
+            <button type="submit">Inject</button>
+        </form>
+        <div id="inject-pvc-message" class="message"></div>
+    </div>
+
+    <h2>Show Resources</h2>
+    <div class="button-container">
+        <button onclick="toggleResource('deployments')">Show Deployments</button>
+        <button onclick="toggleResource('services')">Show Services</button>
+        <button onclick="toggleResource('pods')">Show Pods</button>
+        <button onclick="toggleResource('configmaps')">Show ConfigMaps</button>
+        <button onclick="toggleResource('pvcs')">Show PVCs</button>
+        <button onclick="toggleResource('pvs')">Show PVs</button>
+    </div>
+
+    <div id="resource-container" class="resource-container">
+        <div id="resource-content"></div>
+    </div>
+
+    <script>
+        function toggleForm(formId) {
+            const forms = document.getElementsByClassName('form-container');
+            for (const form of forms) {
+                if (form.id === formId) {
+                    form.style.display = form.style.display === 'block' ? 'none' : 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            }
+        }
+
+        async function submitForm(event, messageId) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData
+            });
+            const message = await response.text();
+            document.getElementById(messageId).innerHTML = message;
+            document.getElementById(messageId).style.display = 'block';
+        }
+
+        function toggleResource(resourceType) {
+            const resourceContainer = document.getElementById('resource-container');
+            const resourceContent = document.getElementById('resource-content');
+            resourceContainer.style.display = 'none';
+
+            fetch(`/show-${resourceType}`)
+                .then(response => response.text())
+                .then(html => {
+                    resourceContent.innerHTML = html;
+                    resourceContainer.style.display = 'block';
+                });
+        }
+
+        async function deleteResource(event, resourceName, resourceType) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData
+            });
+            const message = await response.text();
+            const li = form.closest('li');
+            const messageElement = document.createElement('span');
+            messageElement.innerHTML = message;
+            li.appendChild(messageElement);
+        }
+
+        window.onload = function() {
+            const forms = document.getElementsByClassName('form-container');
+            for (const form of forms) {
+                form.style.display = 'none';
+            }
+            document.getElementById('resource-container').style.display = 'none';
+        };
+    </script>
+</body>
+</html>
