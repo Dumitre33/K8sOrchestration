@@ -1,0 +1,2 @@
+[console_scripts]
+thesis = k8sconfig.run:main

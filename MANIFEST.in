@@ -1,6 +1,2 @@
-include README.md
-include requirements.txt
-recursive-include k8sconfig *.py
-recursive-include static *
-recursive-include templates *
-recursive-include tests *.py
+recursive-include k8sconfig/templates *.html
+recursive-include k8sconfig/static *.css
