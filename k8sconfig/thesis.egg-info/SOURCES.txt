@@ -2,6 +2,7 @@ MANIFEST.in
 README.md
 setup.cfg
 setup.py
+k8sconfig/__init__.py
 k8sconfig/locustfile.py
 k8sconfig/pytest.ini
 k8sconfig/run.py
@@ -11,7 +12,9 @@ k8sconfig/app/deployment_templates.py
 k8sconfig/app/k8s_utils.py
 k8sconfig/app/routes.py
 k8sconfig/app/services.py
+k8sconfig/static/__init__.py
 k8sconfig/static/styles.css
+k8sconfig/templates/__init__.py
 k8sconfig/templates/index.html
 k8sconfig/templates/resources.html
 k8sconfig/templates/result.html
