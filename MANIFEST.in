@@ -1,2 +1,5 @@
 recursive-include k8sconfig/templates *.html
 recursive-include k8sconfig/static *.css
+recursive-include k8sconfig/tests *.py
+include k8sconfig/*.py
+include k8sconfig/*.ini

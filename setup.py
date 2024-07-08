@@ -9,7 +9,8 @@ def parse_requirements(filename):
 setup(
     name='thesis',
     version='0.1',
-    packages=find_packages(include=['k8sconfig', 'k8sconfig.*']),
+    packages=find_packages(where='k8sconfig'),
+    package_dir={'': 'k8sconfig'},
     include_package_data=True,
     install_requires=parse_requirements('requirements.txt'),
     entry_points={
@@ -18,7 +19,7 @@ setup(
         ],
     },
     package_data={
-        'k8sconfig': [
+        '': [
             'templates/*.html',
             'static/*.css',
             'tests/*.py',
@@ -26,9 +27,7 @@ setup(
             '*.ini',
         ],
     },
-
-    author='Alex Dumitre', 
-    author_email='alexandru.dumitre@gmail.com', 
-    url='https://github.com/Dumitre33/K8sOrchestration/tree/master/k8sconfig',  
-    
+    author='Alex Dumitre',
+    author_email='alexandru.dumitre@gmail.com',
+    url='https://github.com/Dumitre33/K8sOrchestration/tree/master/k8sconfig',
 )
