@@ -1,8 +1,1 @@
-recursive-include k8sconfig/templates *.html
-recursive-include k8sconfig/static *.css
-recursive-include k8sconfig/tests *.py
-include k8sconfig/*.py
-include k8sconfig/*.ini
-include k8sconfig/locustfile.py
-include k8sconfig/run.py
-include k8sconfig/pytest.ini
+

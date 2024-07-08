@@ -8,7 +8,7 @@ def parse_requirements(filename):
 
 setup(
     name='thesis',
-    version='0.3',
+    version='0.4',
     packages=find_packages(),
     include_package_data=True,
     install_requires=parse_requirements('requirements.txt'),
