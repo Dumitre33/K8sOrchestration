@@ -9,8 +9,7 @@ def parse_requirements(filename):
 setup(
     name='thesis',
     version='0.1',
-    packages=find_packages(where='k8sconfig'),
-    package_dir={'': 'k8sconfig'},
+    packages=find_packages(include=['k8sconfig', 'k8sconfig.*']),
     include_package_data=True,
     install_requires=parse_requirements('requirements.txt'),
     entry_points={
@@ -25,7 +24,6 @@ setup(
             'locustfile.py',
             'run.py',
             'pytest.ini',
-            
         ],
     },
 

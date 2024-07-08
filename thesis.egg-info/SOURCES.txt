@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+k8sconfig/static/styles.css
+k8sconfig/templates/index.html
+k8sconfig/templates/resources.html
+k8sconfig/templates/result.html
+thesis.egg-info/PKG-INFO
+thesis.egg-info/SOURCES.txt
+thesis.egg-info/dependency_links.txt
+thesis.egg-info/entry_points.txt
+thesis.egg-info/requires.txt
+thesis.egg-info/top_level.txt
