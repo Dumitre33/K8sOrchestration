@@ -19,7 +19,14 @@ setup(
         ],
     },
     package_data={
-        '': ['templates/*.html', 'static/*.css'],
+        'k8sconfig': [
+            'templates/*.html',
+            'static/*.css',
+            'locustfile.py',
+            'run.py',
+            'pytest.ini',
+            
+        ],
     },
 
     author='Alex Dumitre', 
