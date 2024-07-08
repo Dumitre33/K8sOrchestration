@@ -9,11 +9,6 @@ def parse_requirements(filename):
         requirements = [line.strip() for line in lines if line.strip() and not line.startswith("#")]
     return requirements
 
-class CustomInstallCommand(install):
-    def run(self):
-        install.run(self)
-        script_path = os.path.join(os.path.dirname(__file__), 'install_microk8s.sh')
-        subprocess.check_call(['sudo', 'bash', script_path])
 
 setup(
     name='thesis',
@@ -40,9 +35,7 @@ setup(
             'k8sconfig/pytest.ini'
         ]),
     ],
-    cmdclass={
-        'install': CustomInstallCommand,
-    },
+    
     author='Alex Dumitre',
     author_email='alexandru.dumitre@gmail.com',
     url='https://github.com/Dumitre33/K8sOrchestration/tree/master/k8sconfig',
